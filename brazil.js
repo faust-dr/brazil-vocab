@@ -74,8 +74,16 @@ Brazilmemo = {
 
 		this.currentQuery = entry;
 
-		this.uiHandler.setQuery(entry.port);
-		this.uiHandler.setInstructions(this.instructions());
+		var direction = this.translateIntoPortuguese() ? 'ep' : 'pe';
+		this.translationDirection = direction;
+
+		if(direction == 'ep') {
+			this.uiHandler.setQuery(entry.english);
+		} else {
+			this.uiHandler.setQuery(entry.port);
+		}
+
+		this.uiHandler.setInstructions(this.instructions(direction));
 	},
 
 	getRandomLesson: function() {
@@ -88,13 +96,11 @@ Brazilmemo = {
 		return lesson[id];
 	},
 
-	instructions: function() {
-		if(this.currentQuery.german) {
-			return "Pronounce, then type romanization";
-		} else if(this.currentQuery.english) {
+	instructions: function(direction) {
+		if(direction == 'pe') {
 			return "Pronounce, then type translation";
 		} else {
-			return "Pronounce, then hit enter";
+			return "Type translation";
 		}
 	},
 
@@ -238,10 +244,18 @@ Brazilmemo = {
 	},
 
 	correctAnswer: function() {
-		return this.currentQuery.german || this.currentQuery.english;
+		if(this.translationDirection == 'pe') {
+			return this.currentQuery.english;
+		} else {
+			return this.currentQuery.port
+		}
 	},
 
 	pronunciation: function() {
 		return this.currentQuery.pronunciation;
+	},
+
+	translateIntoPortuguese: function() {
+		return true;
 	}
 };

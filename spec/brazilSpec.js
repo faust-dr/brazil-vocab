@@ -28,7 +28,7 @@ describe('Brazilmemo', function() {
 		};
 
 		app = Brazilmemo.init(uiHandler);
-		testList = [ [ { english: "cost", port: "ค่า", pronunciation: "kah" } ] ];
+		testList = [ [ { english: "cost", port: "custa" } ] ];
 		app.load(testList);
 	});
 
@@ -113,15 +113,28 @@ describe('Brazilmemo', function() {
 	});
 	
 	describe('when asking for a query', function() {
-		it('shows a word', function() {
-			app.nextQuery();
-			expect(uiHandler.setQuery).toHaveBeenCalledWith('ค่า');
-			expect(uiHandler.setInstructions).toHaveBeenCalledWith('Pronounce, then type translation');
+		describe('portuguese to english', function() {
+			it('shows a portuguese word', function() {
+				spyOn(app, 'translateIntoPortuguese').andReturn(false);
+				app.nextQuery();
+				expect(uiHandler.setQuery).toHaveBeenCalledWith('custa');
+				expect(uiHandler.setInstructions).toHaveBeenCalledWith('Pronounce, then type translation');
+			});
+		});
+
+		describe('english to portuguese', function() {
+			it('shows an english word', function() {
+				spyOn(app, 'translateIntoPortuguese').andReturn(true);
+				app.nextQuery();
+				expect(uiHandler.setQuery).toHaveBeenCalledWith('cost');
+				expect(uiHandler.setInstructions).toHaveBeenCalledWith('Type translation');
+			});
 		});
 	});
 
 	describe('different instructions for different queries', function() {
-		it('shows a word', function() {
+		it('shows a portuguese word', function() {
+			spyOn(app, 'translateIntoPortuguese').andReturn(false);
 			var testList = [ [ { english: "cost", port: "ค่า", pronunciation: "kah" } ] ];
 			app.load(testList);
 			app.nextQuery();
@@ -129,25 +142,19 @@ describe('Brazilmemo', function() {
 			expect(uiHandler.setInstructions).toHaveBeenCalledWith('Pronounce, then type translation');
 		});
 
-		it('shows a particle', function() {
-			var testList = [ [ { explanation: "(male polite particle)", port: "ครับ", pronunciation: "krap" } ] ];
+		it('shows an english word', function() {
+			spyOn(app, 'translateIntoPortuguese').andReturn(true);
+			var testList = [ [ { english: "cost", port: "ค่า", pronunciation: "kah" } ] ];
 			app.load(testList);
 			app.nextQuery();
-			expect(uiHandler.setQuery).toHaveBeenCalledWith('ครับ');
-			expect(uiHandler.setInstructions).toHaveBeenCalledWith('Pronounce, then hit enter');
-		});
-
-		it('shows a consonant/vowel', function() {
-			var testList = [ [ { german: "k", port: "ฆ", pronunciation: "ko (low)" } ] ];
-			app.load(testList);
-			app.nextQuery();
-			expect(uiHandler.setQuery).toHaveBeenCalledWith('ฆ');
-			expect(uiHandler.setInstructions).toHaveBeenCalledWith('Pronounce, then type romanization');
+			expect(uiHandler.setQuery).toHaveBeenCalledWith('cost');
+			expect(uiHandler.setInstructions).toHaveBeenCalledWith('Type translation');
 		});
 	});
 
 	describe('user enters an answer', function() {
 		beforeEach(function() {
+			spyOn(app, 'translateIntoPortuguese').andReturn(false);
 			app.nextQuery();
 		});
 
@@ -187,21 +194,23 @@ describe('Brazilmemo', function() {
 			app.answer('coll');
 			expect(uiHandler.showHint).toHaveBeenCalled();
 		});
+	});
 
-		describe('query is particle', function() {
-			it('does not show hints', function() {
-				var testList = [ [ { explanation: "blah", port: "ฆ", pronunciation: "ko (low)" } ] ];
-				app.load(testList);
+	describe('user enters an answer', function() {
+		describe('reverse translation direction', function() {
+			it('shows that the answer is correct', function() {
+				spyOn(app, 'translateIntoPortuguese').andReturn(true);
 				app.nextQuery();
-
-				app.answer('coll');
-				expect(uiHandler.showHint).not.toHaveBeenCalled();
+				app.answer('custa');
+				expect(uiHandler.showPronunciation).toHaveBeenCalled();
+				expect(uiHandler.showCongrats).toHaveBeenCalled();
 			});
 		});
 	});
 
 	describe('user hits enter', function() {
 		beforeEach(function() {
+			spyOn(app, 'translateIntoPortuguese').andReturn(false);
 			app.nextQuery();
 		});
 
@@ -239,48 +248,13 @@ describe('Brazilmemo', function() {
 				expect(uiHandler.hideAlternateMeanings).toHaveBeenCalled();
 			});
 		});
-
-		describe('query is a particle', function() {
-			beforeEach(function() {
-				testList = [ [ { explanation: "it is so", port: "ค่า", pronunciation: "kah" } ] ];
-				app.load(testList);
-				app.nextQuery();
-				spyOn(app, 'nextQuery').andCallThrough();
-				app.sendEnterCallback();
-			});
-
-			it('does not display the next query', function() {
-				expect(app.nextQuery).not.toHaveBeenCalled();
-			});
-
-			it('displays the relevant information', function() {
-				expect(uiHandler.showCongrats).toHaveBeenCalled();
-				expect(uiHandler.showPronunciation).toHaveBeenCalled();
-				expect(uiHandler.showExplanation).toHaveBeenCalled();
-			});
-
-			describe('when the user hits enter again', function() {
-				beforeEach(function() {
-					app.sendEnterCallback();
-				});
-
-				it('shows the next query', function() {
-					expect(app.nextQuery).toHaveBeenCalled();
-					expect(uiHandler.clearInput).toHaveBeenCalled();
-				});
-
-				it('hides all the previous info', function() {
-					expect(uiHandler.clearHint).toHaveBeenCalled();
-					expect(uiHandler.hideCongrats).toHaveBeenCalled();
-					expect(uiHandler.hidePronunciation).toHaveBeenCalled();
-					expect(uiHandler.hideExplanation).toHaveBeenCalled();
-					expect(uiHandler.hideAlternateMeanings).toHaveBeenCalled();
-				});
-			});
-		});
 	});
 
 	describe('different kinds of information for answers', function() {
+		beforeEach(function() {
+			spyOn(app, 'translateIntoPortuguese').andReturn(false);
+		});
+
 		it('has an explanation', function() {
 			var testList = [ [ { explanation: "an explanation", english: "cost", port: "ค่า", pronunciation: "kah" } ] ];
 			app.load(testList);
@@ -313,15 +287,14 @@ describe('Brazilmemo', function() {
 
 	describe('skipping a word', function() {
 		beforeEach(function() {
+			spyOn(app, 'translateIntoPortuguese').andReturn(false);
 			app.nextQuery();
 		});
 
 		it('shows the answer', function() {
 			app.skipCallback();
 
-			expect(uiHandler.showPronunciation).toHaveBeenCalledWith('kah');
 			expect(uiHandler.typeInAnswerForUser).toHaveBeenCalledWith('cost');
-
 			expect(uiHandler.showCongrats).not.toHaveBeenCalled();
 		});
 	});

@@ -29,7 +29,7 @@ describe('UiHandler', function() {
 
 	it('sets the query', function() {
 		uiHandler.setQuery('รื');
-		expect($(".thai")).toContainText('รื');
+		expect($(".port")).toContainText('รื');
 	});
 
 	it('sets the instructions', function() {

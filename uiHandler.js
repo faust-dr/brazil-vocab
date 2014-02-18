@@ -44,28 +44,28 @@ UiHandler = {
 
 	sendAnswer: function() {
 		if(!this.evaluateCallback) {
-			throw("No type callback method set from UiHandler to Thaimemo.");
+			throw("No type callback method set from UiHandler to Brazilmemo.");
 		}
 		this.evaluateCallback($("input.answer").val());
 	},
 
 	sendEnter: function() {
 		if(!this.sendEnterCallback) {
-			throw("No enter callback method set from UiHandler to Thaimemo.");
+			throw("No enter callback method set from UiHandler to Brazilmemo.");
 		}
 		this.sendEnterCallback();
 	},
 	
 	sendSkip: function() {
 		if(!this.skipCallback) {
-			throw("No skip callback method set from UiHandler to Thaimemo.");
+			throw("No skip callback method set from UiHandler to Brazilmemo.");
 		}
 		this.skipCallback();
 	},
 
 	checkboxClicked: function() {
 		if(!this.checkboxCallback) {
-			throw("No clicking checkbox callback method set from UiHandler to Thaimemo.");
+			throw("No clicking checkbox callback method set from UiHandler to Brazilmemo.");
 		}
 
 		var lessons = {};
@@ -77,7 +77,7 @@ UiHandler = {
 	},
 
 	setQuery: function(query) {
-		$(".thai").text(query);
+		$(".port").text(query);
 	},
 
 	setInstructions: function(instructions) {

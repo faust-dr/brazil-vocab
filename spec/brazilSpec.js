@@ -1,4 +1,4 @@
-describe('Thaimemo', function() {
+describe('Brazilmemo', function() {
 	var app;
 	var uiHandler;
 	var testList;
@@ -27,8 +27,8 @@ describe('Thaimemo', function() {
 			showHint: jasmine.createSpy('showHint'),
 		};
 
-		app = Thaimemo.init(uiHandler);
-		testList = [ [ { english: "cost", thai: "ค่า", pronunciation: "kah" } ] ];
+		app = Brazilmemo.init(uiHandler);
+		testList = [ [ { english: "cost", port: "ค่า", pronunciation: "kah" } ] ];
 		app.load(testList);
 	});
 
@@ -58,7 +58,7 @@ describe('Thaimemo', function() {
 	});
 
 	describe('loading the lesson titles', function() {
-		var allLessons = [ { name: "Lesson A", contents: [ { english: "abc", thai: "ฟิแ"} ] }, { name: "Lesson B", contents: [ 'blub' ] } ];
+		var allLessons = [ { name: "Lesson A", contents: [ { english: "abc", port: "ฟิแ"} ] }, { name: "Lesson B", contents: [ 'blub' ] } ];
 		beforeEach(function() {
 			app.loadLessonTitles(allLessons);
 		});
@@ -69,7 +69,7 @@ describe('Thaimemo', function() {
 	});
 
 	describe('loading a lesson list', function() {
-		var allLessons = [ { name: "Lesson A", contents: [ { english: "abc", thai: "ฟิแ"} ] }, { name: "Lesson B", contents: [ 'blub' ] } ];
+		var allLessons = [ { name: "Lesson A", contents: [ { english: "abc", port: "ฟิแ"} ] }, { name: "Lesson B", contents: [ 'blub' ] } ];
 		beforeEach(function() {
 			app.loadFromFile(allLessons);
 		});
@@ -80,7 +80,7 @@ describe('Thaimemo', function() {
 				'Lesson B': false,
 			});
 
-			expect(app.lessons).toEqual([ [ { english: "abc", thai: "ฟิแ"} ] ]);
+			expect(app.lessons).toEqual([ [ { english: "abc", port: "ฟิแ"} ] ]);
 		});
 
 		it('fetches the next query', function() {
@@ -93,9 +93,9 @@ describe('Thaimemo', function() {
 	describe('re-formatting the word list', function() {
 		it('produces the right format', function() {
 			var oneLesson = [
-				{ english: "menu", thai: "เมนู", pronunciation: "may-nuh" },
-				{ english: "like to", thai: "อยากจะ", pronunciation: "yahk ja" },
-				{ explanation: "(formal)", english: "to eat", thai: "ทาน", pronunciation: "tahn" },
+				{ english: "menu", port: "เมนู", pronunciation: "may-nuh" },
+				{ english: "like to", port: "อยากจะ", pronunciation: "yahk ja" },
+				{ explanation: "(formal)", english: "to eat", port: "ทาน", pronunciation: "tahn" },
 			];
 
 			var everyLesson = [
@@ -104,9 +104,9 @@ describe('Thaimemo', function() {
 
 			expect(app.generateLessonList(everyLesson)).toEqual([
 				[
-					{ english: "menu", thai: "เมนู", pronunciation: "may-nuh" },
-					{ english: "like to", thai: "อยากจะ", pronunciation: "yahk ja" },
-					{ explanation: "(formal)", english: "to eat", thai: "ทาน", pronunciation: "tahn" },
+					{ english: "menu", port: "เมนู", pronunciation: "may-nuh" },
+					{ english: "like to", port: "อยากจะ", pronunciation: "yahk ja" },
+					{ explanation: "(formal)", english: "to eat", port: "ทาน", pronunciation: "tahn" },
 				]
 			]);
 		});
@@ -122,7 +122,7 @@ describe('Thaimemo', function() {
 
 	describe('different instructions for different queries', function() {
 		it('shows a word', function() {
-			var testList = [ [ { english: "cost", thai: "ค่า", pronunciation: "kah" } ] ];
+			var testList = [ [ { english: "cost", port: "ค่า", pronunciation: "kah" } ] ];
 			app.load(testList);
 			app.nextQuery();
 			expect(uiHandler.setQuery).toHaveBeenCalledWith('ค่า');
@@ -130,7 +130,7 @@ describe('Thaimemo', function() {
 		});
 
 		it('shows a particle', function() {
-			var testList = [ [ { explanation: "(male polite particle)", thai: "ครับ", pronunciation: "krap" } ] ];
+			var testList = [ [ { explanation: "(male polite particle)", port: "ครับ", pronunciation: "krap" } ] ];
 			app.load(testList);
 			app.nextQuery();
 			expect(uiHandler.setQuery).toHaveBeenCalledWith('ครับ');
@@ -138,7 +138,7 @@ describe('Thaimemo', function() {
 		});
 
 		it('shows a consonant/vowel', function() {
-			var testList = [ [ { german: "k", thai: "ฆ", pronunciation: "ko (low)" } ] ];
+			var testList = [ [ { german: "k", port: "ฆ", pronunciation: "ko (low)" } ] ];
 			app.load(testList);
 			app.nextQuery();
 			expect(uiHandler.setQuery).toHaveBeenCalledWith('ฆ');
@@ -190,7 +190,7 @@ describe('Thaimemo', function() {
 
 		describe('query is particle', function() {
 			it('does not show hints', function() {
-				var testList = [ [ { explanation: "blah", thai: "ฆ", pronunciation: "ko (low)" } ] ];
+				var testList = [ [ { explanation: "blah", port: "ฆ", pronunciation: "ko (low)" } ] ];
 				app.load(testList);
 				app.nextQuery();
 
@@ -242,7 +242,7 @@ describe('Thaimemo', function() {
 
 		describe('query is a particle', function() {
 			beforeEach(function() {
-				testList = [ [ { explanation: "it is so", thai: "ค่า", pronunciation: "kah" } ] ];
+				testList = [ [ { explanation: "it is so", port: "ค่า", pronunciation: "kah" } ] ];
 				app.load(testList);
 				app.nextQuery();
 				spyOn(app, 'nextQuery').andCallThrough();
@@ -282,7 +282,7 @@ describe('Thaimemo', function() {
 
 	describe('different kinds of information for answers', function() {
 		it('has an explanation', function() {
-			var testList = [ [ { explanation: "an explanation", english: "cost", thai: "ค่า", pronunciation: "kah" } ] ];
+			var testList = [ [ { explanation: "an explanation", english: "cost", port: "ค่า", pronunciation: "kah" } ] ];
 			app.load(testList);
 			app.nextQuery();
 			app.answer('cost');
@@ -296,7 +296,7 @@ describe('Thaimemo', function() {
 		});
 
 		it('has alternate meanings', function() {
-			var testList = [ [ { english: ["cost", "testMeaning"], thai: "ค่า", pronunciation: "kah" } ] ];
+			var testList = [ [ { english: ["cost", "testMeaning"], port: "ค่า", pronunciation: "kah" } ] ];
 			app.load(testList);
 			app.nextQuery();
 			app.answer('cost');

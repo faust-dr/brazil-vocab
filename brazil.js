@@ -198,7 +198,7 @@ Brazilmemo = {
 		for(i = 0; i < answer.length; i++) {
 			var correctLetters = this.getCorrectLetters(this.correctAnswer(), i, answer);
 			var typedLetter = answer.charAt(i);
-			if(_.contains(correctLetters, typedLetter)) {
+			if(this.containsLetter(correctLetters, typedLetter)) {
 				text += typedLetter;
 			} else {
 				text += '_';
@@ -208,10 +208,18 @@ Brazilmemo = {
 		return text;
 	},
 
+	containsLetter: function(correctLetters, typedLetter) {
+		return _.contains(correctLetters, typedLetter) ||
+			_.contains(_.map(correctLetters, function(l) { return l.toLowerCase(); }), typedLetter.toLowerCase());
+	},
+
 	getCorrectLetters: function(correctAnswers, i, answer) {
 		if(typeof correctAnswers === "string") {
+			var lowerCaseCorrectAnswer = correctAnswers.toLowerCase();
+			var lowerCaseAnswer = answer.toLowerCase();
+
 			for(j = 0; j < i ; j++) {
-				if(correctAnswers.charAt(j) != answer.charAt(j)) {
+				if(lowerCaseCorrectAnswer.charAt(j) != lowerCaseAnswer.charAt(j)) {
 					return false;
 				}
 			}
@@ -233,7 +241,7 @@ Brazilmemo = {
 		}
 
 		if(typeof correctAnswer === "string") {
-			return answer === correctAnswer;
+			return this.forgivingStringCompare(answer, correctAnswer);
 		}
 
 		return _.find(correctAnswer, function(item) {
@@ -241,6 +249,10 @@ Brazilmemo = {
 				return true;
 			}
 		}, this);
+	},
+
+	forgivingStringCompare: function(word1, word2) {
+		return word1.toLowerCase() == word2.toLowerCase();
 	},
 
 	correctAnswer: function() {

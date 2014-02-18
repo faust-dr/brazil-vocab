@@ -165,6 +165,12 @@ describe('Brazilmemo', function() {
 				expect(uiHandler.showCongrats).toHaveBeenCalled();
 			});
 
+			it('accepts differences in capitalization', function() {
+				app.answer('Cost');
+				expect(uiHandler.showPronunciation).toHaveBeenCalled();
+				expect(uiHandler.showCongrats).toHaveBeenCalled();
+			});
+
 			describe('user changes the answer to be incorrect', function() {
 				it('it removes the info', function() {
 					uiHandler.hidePronunciation.reset();
@@ -192,7 +198,12 @@ describe('Brazilmemo', function() {
 
 		it('shows the appropriate hint', function() {
 			app.answer('coll');
-			expect(uiHandler.showHint).toHaveBeenCalled();
+			expect(uiHandler.showHint).toHaveBeenCalledWith('co__');
+		});
+
+		it('shows the appropriate hint for different capitalization', function() {
+			app.answer('Coll');
+			expect(uiHandler.showHint).toHaveBeenCalledWith('Co__');
 		});
 	});
 

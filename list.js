@@ -171,7 +171,7 @@ people = [
 adjectives = [
 	{ english: 'small', port: 'pequeno' },
 	{ english: 'big', port: 'grande' },
-	{ english: 'fast', port: 'rápdio' },
+	{ english: 'fast', port: 'rápido' },
 	{ english: 'slow', port: 'devagar' },
 	{ english: 'pretty', port: 'bonito' },
 	{ english: 'ugly', port: 'feio' },

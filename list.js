@@ -26,8 +26,8 @@ numbers2 = [
 ]
 
 numbers3= [
-	{ english: '21', port: 'vinte u um' },
-	{ english: '22', port: 'vinte u dois' },
+	{ english: '21', port: 'vinte e um' },
+	{ english: '22', port: 'vinte e dois' },
 	{ english: '23', port: 'vinte e três' },
 	{ english: '24', port: 'vinte e quatro' },
 	{ english: '25', port: 'vinte e cinco' },

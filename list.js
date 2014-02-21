@@ -111,9 +111,6 @@ questions = [
 	{ english: 'what?', port: 'qual?' },
 	{ english: 'where?', port: 'onde?' },
 	{ english: 'who?', port: 'quem?' },
-	{ english: 'Como fala', port: 'How do you say' },
-	{ english: 'Como se diz', port: 'How do we say' },
-	{ english: 'Como fala "Hello" em português?', port: 'How do you say "office" in Portuguese?' },
 ]
 
 possessive = [
@@ -182,6 +179,73 @@ adjectives = [
 	{ english: 'busy', port: 'ocupado' },
 ]
 
+learning = [
+	{ english: 'Can you repeat please?', port: 'Você pode repetir?' },
+	{ english: 'How do you say', port: 'Como fala' },
+	{ english: 'How do we say', port: 'Como se diz' },
+	{ english: 'How do you say "office" in Portuguese?', port: 'Como fala "Hello" em português?' },
+]
+
+all = [
+	{ english: 'every day', port: 'todos os dias' },
+	{ english: 'every morning', port: 'todas as manhâs' },
+	{ english: 'I get up every morning at 7', port: 'Eu acordo todo dia as 7' },
+	{ english: 'too', port: 'também' },
+]
+
+being = [
+	{ english: "I'm hungry", port: 'Estou com fome' },
+	{ english: "Are you hungry?", port: 'Você está com fome?' },
+	{ english: "I'm tired", port: 'Eu estou cansado' },
+	{ english: "Are you tired?", port: 'Você está cansado?' },
+	{ english: "I am tired too", port: 'Eu estou cansado também' },
+	{ english: "He is sleepy", port: 'Ele está com sono' },
+	{ english: "Are you sleepy?", port: 'Você está com sono?' },
+	{ english: "She is sleeping", port: 'Ela está dormindo' },
+	{ english: "I'm thirsty", port: 'Eu estou com sede' },
+	{ english: "Are you thirsty?", port: 'Você está com sede?' },
+	{ english: "I am busy", port: 'Eu estou ocupado' },
+	{ english: "Are you busy?", port: 'Você está ocupado?' },
+]
+
+toHave = [
+	{ english: 'to have', port: 'ter' },
+	{ english: 'I have', port: 'eu tenho' },
+	{ english: ['you have', 'she has', 'he has'], port: 'você tem' },
+	{ english: 'we have', port: 'nós temos' },
+	{ english: 'they have', port: 'eles têm' },
+	{ english: 'I have a meeting', port: 'Eu tenho uma reunião' },
+	{ english: 'I have a tie', port: 'Eu tenho uma gravata' },
+	{ english: 'I have patience', port: 'Eu tenho paciência' },
+	{ english: 'I am patient', port: 'Eu sou paciente' },
+	{ english: 'I have a telephone', port: 'Eu tenho um telefone' },
+	{ english: 'Do you have a telephone?', port: 'Você tem um telefone?' },
+	{ english: 'We have several telephones', port: 'Nós temos vários telefones' },
+	{ english: 'I have a solution', port: 'Eu tenho uma solução' },
+	{ english: 'We have a solution', port: 'Nós temos uma solução' },
+	{ english: 'I have a problem', port: 'Eu tenho um problema' },
+	{ english: 'Do you have a problem?', port: 'Vocês têm um problema?', hint: 'Addressing a group of people' },
+]
+
+toHaveTo = [
+	{ english: 'I have to make food in the house', port: 'Eu tenho que fazer comida em casa' },
+	{ english: 'I have to speak slow', port: 'Eu tenho que falar devagar' },
+	{ english: 'I have to study for the test', port: 'Eu tenho que estudar para a provo' },
+	{ english: 'I have to eat healthy food', port: 'Eu tenho que comer comida saudável' },
+	{ english: 'I have to drink water every day', port: 'Eu tenho que beber água todos os dias' },
+	{ english: 'I have to drink water all day long', port: 'Eu tenho que beber água o dia todo' },
+	{ english: 'I have to practice portuguese', port: 'Eu tenho que praticar português' },
+	{ english: 'I have to sleep earlier', port: 'Eu tenho que dormir mais cedo' },
+	{ english: 'I have to sleep at 11pm', port: 'Eu tenho que dormir as 11h' },
+	{ english: 'I have to ride my motorcycle', port: 'Eu tenho que pilotar minha moto' },
+	{ english: 'Do you have do sleep early?', port: 'Você tem que dormir mais cedo?' },
+	{ english: 'They have to clean up the cafe', port: 'Eles têm que lavar a cafeteria' },
+	{ english: 'We have to listen to the music', port: 'Nós temos que ouvir a musica' },
+	{ english: 'They have to eat ice cream', port: 'They têm que comer um sorvete' },
+]
+
+toBe = []
+
 // template = [
 // 	{ english: "", thai: "", pronunciation: "" },
 // ]
@@ -205,4 +269,9 @@ everyLesson = [
 	{ name: "Days", contents: days },
 	{ name: "Time", contents: time },
 	{ name: "People", contents: people },
+	{ name: "Learning", contents: learning },
+	{ name: "All/Every", contents: all },
+	{ name: "Being..", contents: being },
+	{ name: "to have", contents: toHave },
+	{ name: "to have to", contents: toHaveTo },
 ]

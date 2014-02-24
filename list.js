@@ -246,6 +246,79 @@ toHaveTo = [
 
 toBe = []
 
+toSpeakPast = [
+	{ english: 'I spoke', port: 'eu falei' },
+	{ english: 'you spoke', hint: 'singular', port: 'Você falou' },
+	{ english: 'he spoke', port: 'ele falou' },
+	{ english: 'she spoke', port: 'ela falou' },
+	{ english: 'we spoke', port: 'nós falamos' },
+	{ english: 'they spoke', port: ['eles falaram', 'elas falaram'] },
+	{ english: 'you spoke', hint: 'plural', port: 'Vocês falaram' },
+]
+
+toEatPast = [
+	{ english: 'I ate', port: 'eu comi' },
+	{ english: 'you ate', hint: 'singular', port: 'Você comeu' },
+	{ english: 'he ate', port: 'ele comeu' },
+	{ english: 'she ate', port: 'ela comeu' },
+	{ english: 'we ate', port: 'nós comemos' },
+	{ english: 'they ate', port: ['eles comeram', 'elas comeram'] },
+	{ english: 'you ate', hint: 'plural', port: 'Vocês comeram' },
+]
+
+toLeavePast = [
+	{ english: 'I left', port: 'eu parti' },
+	{ english: 'you left', hint: 'singular', port: 'Você partiu' },
+	{ english: 'he left', port: 'ele partiu' },
+	{ english: 'she left', port: 'ela partiu' },
+	{ english: 'we left', port: 'nós partimos' },
+	{ english: 'they left', port: ['eles comeram', 'elas partiram'] },
+	{ english: 'you left', hint: 'plural', port: 'Vocês partiram' },
+]
+
+toGo = [
+	{ english: 'I go', port: 'eu vou' },
+	{ english: 'you go', hint: 'singular', port: 'Você vai' },
+	{ english: 'he goes', port: 'ele vai' },
+	{ english: 'she goes', port: 'ela vai' },
+	{ english: 'we go', port: 'nós vamos' },
+	{ english: 'they go', port: ['eles vão', 'elas vão'] },
+	{ english: 'you go', hint: 'plural',  port: 'Vocês vão' },
+]
+
+toGoPast = [
+	{ english: 'I went', port: 'eu fui' },
+	{ english: 'you went', hint: 'singular', port: 'Você foi' },
+	{ english: 'he went', port: 'ele foi' },
+	{ english: 'she went', port: 'ela foi' },
+	{ english: 'we went', port: 'nós fomos' },
+	{ english: 'they went', port: ['eles foram', 'elas foram'] },
+	{ english: 'you went', hint: 'plural',  port: 'Vocês foram' },
+]
+
+toHavePast = [
+	{ english: 'I had', port: 'eu tive' },
+	{ english: 'you had', hint: 'singular', port: 'Você teve' },
+	{ english: 'he had', port: 'ele teve' },
+	{ english: 'she had', port: 'ela teve' },
+	{ english: 'we had', port: 'nós tivemos' },
+	{ english: 'they had', port: ['eles tiveram', 'elas tiveram'] },
+	{ english: 'you had', hint: 'plural',  port: 'Vocês tiveram' },
+]
+
+transport = [
+	{ english: 'by car', port: 'de carro' },
+	{ english: 'by bus', port: 'de ônibus' },
+	{ english: 'by bicycle', port: 'de bicicleta' },
+	{ english: 'by subway', port: 'de metrô' },
+	{ english: 'by motorcycle', port: 'de moto' },
+	{ english: 'by plane', port: 'de avião' },
+	{ english: 'by train', port: 'de trem' },
+	{ english: 'by boat', port: 'de barco' },
+	{ english: 'by horse', port: 'a cavalo' },
+	{ english: 'by foot', port: 'a pé' },
+]
+
 // template = [
 // 	{ english: "", thai: "", pronunciation: "" },
 // ]
@@ -273,5 +346,12 @@ everyLesson = [
 	{ name: "All/Every", contents: all },
 	{ name: "Being..", contents: being },
 	{ name: "to have", contents: toHave },
+	{ name: "to have (past)", contents: toHavePast },
 	{ name: "to have to", contents: toHaveTo },
+	{ name: "to speak (past)", contents: toSpeakPast },
+	{ name: "to eat (past)", contents: toEatPast },
+	{ name: "to leave (past)", contents: toLeavePast },
+	{ name: "to go", contents: toGo },
+	{ name: "to go (past)", contents: toGoPast },
+	{ name: "Transport", contents: transport },
 ]

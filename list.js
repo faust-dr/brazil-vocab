@@ -183,7 +183,7 @@ learning = [
 	{ english: 'Can you repeat please?', port: 'Você pode repetir?' },
 	{ english: 'How do you say', port: 'Como fala' },
 	{ english: 'How do we say', port: 'Como se diz' },
-	{ english: 'How do you say "office" in Portuguese?', port: 'Como fala "Hello" em português?' },
+	{ english: 'How do you say "office" in Portuguese?', port: 'Como fala "office" em português?' },
 ]
 
 all = [

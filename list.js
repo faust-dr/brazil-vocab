@@ -272,7 +272,7 @@ toLeavePast = [
 	{ english: 'he left', port: 'ele partiu' },
 	{ english: 'she left', port: 'ela partiu' },
 	{ english: 'we left', port: 'nós partimos' },
-	{ english: 'they left', port: ['eles comeram', 'elas partiram'] },
+	{ english: 'they left', port: ['eles partiram', 'elas partiram'] },
 	{ english: 'you left', hint: 'plural', port: 'Vocês partiram' },
 ]
 

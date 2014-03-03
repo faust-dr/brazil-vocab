@@ -241,7 +241,7 @@ toHaveTo = [
 	{ english: 'Do you have do sleep early?', port: 'Você tem que dormir mais cedo?' },
 	{ english: 'They have to clean up the cafe', port: 'Eles têm que lavar a cafeteria' },
 	{ english: 'We have to listen to the music', port: 'Nós temos que ouvir a musica' },
-	{ english: 'They have to eat ice cream', port: 'They têm que comer um sorvete' },
+	{ english: 'They have to eat ice cream', port: 'Eles têm que comer um sorvete' },
 ]
 
 toBe = []
